@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+errcho(){ >&2 echo "$@"; }
+
+if [[ "$#" -ne 2 ]]; then
+    errcho "Invalid Arguments"
+    errcho "Usage: <TARGET> <SOURCE>"
+    exit 1
+fi
+
+TGT=$1
+SRC=$2
+DIR=$(dirname $BASH_SOURCE)
+
+paste <(cat $TGT | $DIR/tcidrepair | $DIR/lw_detokenize.pl) <(tr '\t' ' ' < $SRC) | $DIR/srcdetok
