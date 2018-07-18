@@ -26,7 +26,7 @@ This is a python wrapper which uses a subprocess for tokenizer communicated usin
 
 Here is how to use it::
 
-    tokr = UlfTokenizer()
+    tokr = UlfTok()
     text = "Hello,... this is a test! Is it good? http://isi.edu"
     print(tokr.tokenize(text))
 
