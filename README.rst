@@ -26,14 +26,10 @@ This is a python wrapper which uses a subprocess for tokenizer communicated usin
 
 Here is how to use it::
 
-    tokr = UlfTok()
-    text = "Hello,... this is a test! Is it good? http://isi.edu"
-    print(tokr.tokenize(text))
+    # export PYTHONPATH=$PWD
 
-    # if you want to turn the backend off and on
-    tokr.stop()
-    assert tokr.is_active is False
-    with tokr:
-        assert tokr.is_active
-        print(tokr.tokenize(text))
-    assert tokr.is_active is False
+    from ulftok import tokenize_lines
+    text = "Hello,... this is a test! Is it good? http://isi.edu"
+    lines = [text] * 10
+    for line in tokenize_lines(lines):
+        print(line)

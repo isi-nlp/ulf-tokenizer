@@ -1,59 +1,44 @@
 import os
 from subprocess import Popen, PIPE
 import logging as log
-from typing import List
+from typing import Iterator, List
+import threading
 log.basicConfig(level=log.DEBUG)
 
-class UlfTok:
-    """Python wrapper for Ulf's tokenizer
+dir_path = os.path.dirname(os.path.abspath(__file__))
+eng_script_path = os.path.join(dir_path, 'ulf-eng-tok.sh')
+src_script_path = os.path.join(dir_path, 'ulf-src-tok.sh')
+
+def tokenize(line: str) -> List[str]:
+    """Tokenize a single line .
+    This is not efficient, please use tokenize_lines(...) instead
     """
+    return list(tokenize_lines([line]))[0]
 
-    def __init__(self, english_like=True):
-        """
-        :param english_like: if text is in latin script, False for non latin scripts
-        """
-        script_path = 'ulf-eng-tok.sh' if english_like else 'ulf-src-tok.sh'
-        dir_path = os.path.dirname(os.path.abspath(__file__))
-        self.script_path = os.path.join(dir_path, script_path)
-        self.proxy = None
-        self.start()
+def tokenize_lines(lines: Iterator[str], english_like=True) -> Iterator[List[str]]:
+    """Tokenize a stream of lines"""
+    script_path = eng_script_path if english_like else src_script_path
+    p = Popen(script_path, stdin=PIPE, stdout=PIPE, universal_newlines=True, bufsize=1)
 
-    def tokenize(self, text: str) -> List[str]:
-        assert self.proxy is not None
-        out, _ = self.proxy.communicate(input=text.strip())
-        return out.split()
+    def write(iter, out):
+        for line in iter:
+            out.write(line + '\n')
+        out.close()
 
-    def start(self):
-        self.proxy = Popen(self.script_path, stdin=PIPE, stdout=PIPE, universal_newlines=True)
-        log.info(f'started tokenizer process {self.proxy.pid}')
+    writer = threading.Thread(target=write, args=(lines, p.stdin))
+    writer.daemon = True
+    writer.start()
 
-    def stop(self):
-        if self.proxy is not None:
-            log.info(f'Stopping tokenizer process {self.proxy.pid}')
-            self.proxy.terminate()
-            self.proxy = None
-
-    def __enter__(self):
-        self.start()
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.stop()
-
-    def __del__(self):
-        self.stop()
-
-    @property
-    def is_active(self):
-        return self.proxy is not None
+    for out_line in p.stdout:
+        yield out_line.strip().split()
+    log.debug(f'stopping {p.pid}')
+    p.kill()
 
 
 if __name__ == '__main__':
-    tokr = UlfTok()
+
     text = "Hello,... this is a test! Is it good? http://isi.edu"
-    print(tokr.tokenize(text))
-    tokr.stop()
-    assert tokr.is_active is False
-    with tokr:
-        assert tokr.is_active
-        print(tokr.tokenize(text))
-    assert tokr.is_active is False
+    print(tokenize(text))
+    lines = [text] * 10
+    for line in tokenize_lines(lines):
+        print(line)
