@@ -1,8 +1,12 @@
 import os
+import subprocess
 from subprocess import Popen, PIPE
 import logging as log
 from typing import Iterator, List
 import threading
+
+from multiprocessing.pool import ThreadPool
+
 log.basicConfig(level=log.DEBUG)
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
@@ -33,6 +37,24 @@ def tokenize_lines(lines: Iterator[str], english_like=True) -> Iterator[List[str
         yield out_line.strip().split()
     log.debug(f'stopping {p.pid}')
     p.kill()
+
+
+def tokenize_files(inp_paths: List[str], outp_paths: List[str], jobs: int=None, english_like=True):
+    assert len(inp_paths) == len(outp_paths)
+    log.info(f" Going to tokenize {len(inp_paths)} using {jobs} pool")
+
+    def tokenize_file(inp_path, out_path):
+        script_path = eng_script_path if english_like else src_script_path
+        cmd = f'{script_path} < {inp_path} > {out_path} '
+        log.debug(f" Going to tokenize {len(inp_paths)} using {jobs} pool")
+        status, _ = subprocess.getstatusoutput(cmd)
+
+    pool = ThreadPool(jobs)
+    for (inp, out) in zip(inp_paths, outp_paths):
+        pool.apply_async(tokenize_file, (inp, out))
+
+    pool.close()
+    pool.join()
 
 
 if __name__ == '__main__':
