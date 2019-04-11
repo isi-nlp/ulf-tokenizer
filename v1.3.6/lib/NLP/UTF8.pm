@@ -206,6 +206,7 @@ sub split_into_utf8_characters {
       $group_xml_chars = 1;
       $group_xml_tags = 1;
    }
+   $orig_string = $string;
    $string .= " ";
    while ($string =~ /\S/) {
       # one-character UTF-8 = ASCII
@@ -317,6 +318,7 @@ sub split_into_utf8_characters {
          push(@characters,substr($string, 0, 1));
          $string = substr($string, 1);
       }
+      push(@characters, "\n") if $orig_string =~ /\n$/;
    }
    return ($return_only_chars) ? @characters : ($skipped_bytes, $end_of_token_p_string, @characters);
 }
@@ -987,7 +989,7 @@ sub repair_misconverted_windows_to_utf8_strings {
       my $result = "";
       while (($pre,$c_windows,$post) = ($s =~ /^(.*?)\xC2([\x80-\x9F])(.*)$/s)) {
 	 $c_utf8 = $caller->windows1252_to_utf8($c_windows, 0);
-         $result .= ($c_utf8 eq "?") ? "$pre$c_windows" : "$pre$c_utf8";
+         $result .= ($c_utf8 eq "?") ? ($pre . "\xC2" . $c_windows) : "$pre$c_utf8";
          $s = $post;
       }
       $result .= $s;

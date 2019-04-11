@@ -1946,6 +1946,8 @@ sub read_de_accent_case_resource {
 	 $line_number++;
 	 if ($_ =~ /^#+\s*CASE\b/) {
 	    $mode = "case";
+	 } elsif ($_ =~ /^#+\s*PUNCTUATION NORMALIZATION\b/) {
+	    $mode = "punctuation-normalization";
 	 } elsif ($_ =~ /^#/) {
 	    # ignore comment
 	 } elsif ($_ =~ /^\s*$/) {
@@ -1966,6 +1968,19 @@ sub read_de_accent_case_resource {
 	    } else {
 	       print LOG "Empty de-accent list for $char_without_accent in l.$line_number in $filename\n";
 	    } 
+	 } elsif (($mode eq "punctuation-normalization") && (($norm_punct, @unnorm_puncts) = split(/\s+/, $_))) {
+	    if (keys %{$ht{NORM_PUNCT_INV}->{$norm_punct}}) {
+	       print LOG "Ignoring duplicate punctuation-normalization line for target $norm_punct in l.$line_number in $filename\n";
+	    } elsif (@unnorm_puncts) {
+	       foreach $unnorm_punct (@unnorm_puncts) {
+		  my $prev_norm_punct = $ht{NORM_PUNCT}->{$unnorm_punct};
+		  if ($prev_norm_punct) {
+		     print LOG "Ignoring duplicate punctuation normalization $unnorm_punct -> $norm_punct (besides $prev_norm_punct) in l.$line_number in $filename\n";
+		  }
+	          $ht{NORM_PUNCT}->{$unnorm_punct} = $norm_punct;
+	          $ht{NORM_PUNCT_INV}->{$norm_punct}->{$unnorm_punct} = 1;
+	       }
+	    }
 	 } elsif (($mode eq "case") && (($uc_char, $lc_char) = ($_ =~ /^(\S+)\s+(\S+)\s*$/))) {
 	    $ht{UPPER_TO_LOWER_CASE}->{$uc_char} = $lc_char;
 	    $n_case_entries++;
@@ -1983,8 +1998,8 @@ sub read_de_accent_case_resource {
 sub de_accent_char {
    local($this, $char, *ht, $default) = @_;
 
-   my @results = sort keys %{$ht{DE_ACCENT}->{$char}};
-   return (@results) ? @results : ($default);
+   @de_accend_char_results = sort keys %{$ht{DE_ACCENT}->{$char}};
+   return (@de_accend_char_results) ? @de_accend_char_results : ($default);
 }
 
 sub lower_case_char {
@@ -1998,6 +2013,24 @@ sub lower_case_and_de_accent_char {
 
    my $lc_char = $this->lower_case_char($char, *ht, $char);
    return $this->de_accent_char($lc_char, *ht, $lc_char);
+}
+
+sub lower_case_and_de_accent_string {
+   local($this, $string, *ht, $control) = @_;
+
+   my $norm_punct_p = ($control && ($control =~ /norm-punct/i));
+   my @chars = $utf8->split_into_utf8_characters($string, "return only chars; XML chars; return trailing whitespaces", *ht);
+   my $result = "";
+   foreach $char (@chars) {
+      my @lc_de_accented_chars = $this->lower_case_and_de_accent_char($char, *ht);
+      if ($norm_punct_p
+       && (! @lc_de_accented_chars)) {
+	 my $norm_punct = $ht{NORM_PUNCT}->{$char};
+         @lc_de_accented_chars = ($norm_punct) if $norm_punct;
+      }
+      $result .= ((@lc_de_accented_chars) ? $lc_de_accented_chars[0] : $char);
+   }
+   return $result;
 }
 
 sub round_to_n_decimal_places {
@@ -2768,7 +2801,7 @@ sub likely_valid_url_format {
 
 # see also EnglMorph->special_token_type
 $common_file_suffixes = "aspx?|cgi|docx?|gif|html?|jpeg|jpg|pdf|php|pptx?|txt|xml";
-$common_top_domain_suffixes = "museum|info|cat|com|edu|gov|int|mil|net|org|ar|at|au|be|bi|br|ca|ch|cn|co|cz|de|dk|es|eu|fi|fr|gr|hk|hu|id|ie|il|in|is|it|jp|ke|kr|lu|mg|mx|my|nl|no|nz|ph|pl|pt|ro|ru|rw|se|sg|so|tr|tv|tw|tz|ug|uk|us|za";
+$common_top_domain_suffixes = "museum|info|cat|com|edu|gov|int|mil|net|org|ar|at|au|be|bg|bi|br|ca|ch|cn|co|cz|de|dk|es|eu|fi|fr|gr|hk|hu|id|ie|il|in|ir|is|it|jp|ke|kr|lu|mg|mx|my|nl|no|nz|ph|pl|pt|ro|rs|ru|rw|se|sg|sk|so|tr|tv|tw|tz|ua|ug|uk|us|za";
 
 sub token_is_url_p {
    local($this, $token) = @_;

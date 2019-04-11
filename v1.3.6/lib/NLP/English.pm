@@ -1811,6 +1811,7 @@ sub tokenize {
    my $bio_p = ($control =~ /\bbio\b/);
 
    $s = $utf8->repair_misconverted_windows_to_utf8_strings($s);
+   print "Point A2: $s\n" if $local_verbose;
    $s = $utf8->delete_weird_stuff($s);
    print "Point B: $s\n" if $local_verbose;
 
