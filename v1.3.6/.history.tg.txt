@@ -1,4 +1,0 @@
-tar tvf /nfs/isd/ulf/arabic/release/tok-eng.v1.3.6.tar.gz 
-tar xvf /nfs/isd/ulf/arabic/release/tok-eng.v1.3.6.tar.gz 
-ll
-cd ..
