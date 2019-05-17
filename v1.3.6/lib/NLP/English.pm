@@ -9,6 +9,8 @@ package NLP::English;
 use File::Basename;
 use File::Spec;
 
+# tok v1.3.7 (May 16, 2019)
+
 $chinesePM = NLP::Chinese;
 $ParseEntry = NLP::ParseEntry;
 $util = NLP::utilities;
@@ -1583,7 +1585,7 @@ sub guard_urls_x045 {
    # (Twitter style) #hashtag or @handle
    $s = $result;
    $result = "";
-   while (($pre, $hashtag, $post) = ($s =~ /^(.*?[ .,;()\[\]{}'])([#@](?:[a-z]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|HHERE)(?:[_a-z0-9]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])*(?:[a-z0-9]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]))(.*)$/i)) {
+   while (($pre, $hashtag, $post) = ($s =~ /^(.*?[ .,;()\[\]{}'])([#@](?:[a-z]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|HHERE)(?:[_a-z0-9]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])*(?:[a-z0-9]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF]))(.*)$/i)) {
       $result .= "$pre\x04$hashtag\x05";
       $s = $post;
    }
@@ -1669,9 +1671,10 @@ sub restore_xml_tags_x0123_guarded_string {
 }
 
 sub load_english_abbreviations {
-   local($caller, $filename, *ht) = @_;
+   local($caller, $filename, *ht, $verbose) = @_;
    # e.g. /nfs/nlg/users/textmap/brahms-ml/arabic/data/EnglishAbbreviations.txt
 
+   $verbose = 1 unless defined($verbose);
    my $n = 0;
    if (open(IN, $filename)) {
       while (<IN>) {
@@ -1690,7 +1693,7 @@ sub load_english_abbreviations {
          }
       }
       close(IN);
-      print STDERR "Loaded $n entries from $filename\n";
+      print STDERR "Loaded $n entries from $filename\n" if $verbose;
    } else {
       print STDERR "Can't open $filename\n";
    }
@@ -1743,7 +1746,7 @@ sub guard_abbreviations_with_dontbreak {
 
    my $orig = $s;
    my $result = "";
-   while (($pre,$potential_abbrev,$period,$post) = ($s =~ /^(.*?)((?:[a-z]+\.-?)*(?:[a-z]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])+)(\.)(.*)$/i)) {
+   while (($pre,$potential_abbrev,$period,$post) = ($s =~ /^(.*?)((?:[a-z]+\.-?)*(?:[a-z]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])+)(\.)(.*)$/i)) {
       if (($pre =~ /([-&\/0-9]|[-\/]\@ )$/)
        && (! ($pre =~ /\b[DR](?: \@)?-(?:\@ )?$/))) { # D-Ariz.
 	 $result .= "$pre$potential_abbrev$period";
@@ -1764,8 +1767,8 @@ sub guard_abbreviations_with_dontbreak {
    return $result;
 }
 
-$alpha = "(?:[a-z]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])";
-$alphanum = "(?:[a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])(?:[-_a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])*(?:[a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])|(?:[a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])";
+$alpha = "(?:[a-z]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])";
+$alphanum = "(?:[a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])(?:[-_a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])*(?:[a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])|(?:[a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])";
 
 sub normalize_punctuation {
    local($caller, $s) = @_;
@@ -1833,8 +1836,8 @@ sub tokenize {
    $s = $caller->guard_urls_x045($s);
    $s = $caller->guard_xml_tags_x0123($s);
    $s = $caller->update_replace_characters_based_on_context($s);
-   $s =~ s/((?:[a-zA-Z_]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])\.)([,;]) /$1 $2 /g;
-   $s =~ s/((?:[a-zA-Z_]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])\.)(\x04)/$1 $2/g;
+   $s =~ s/((?:[a-zA-Z_]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])\.)([,;]) /$1 $2 /g;
+   $s =~ s/((?:[a-zA-Z_]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])\.)(\x04)/$1 $2/g;
    if ($bio_p) {
       $s =~ s/(\S)((?:wt\/|onc\/)?(?:[-+]|\?+|\xE2\x80[\x93\x94])\/(?:[-+]|\?+|\xE2\x80[\x93\x94]))/$1 $2/g;
       $s =~ s/((?:[-+]|\xE2\x80[\x93\x94])\/(?:[-+]|\xE2\x80[\x93\x94]))(\S)/$1 $2/g;
@@ -1893,7 +1896,7 @@ sub tokenize {
    foreach $_ ((1..5)) {
       $s =~ s/([ \/()])($alphanum) ?\/ ?($alphanum)([-+ \/().,;])/$1$2 \@\/\@ $3$4/gi;
    }
-   $s =~ s/([a-zA-Z%\/\[\]]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\x05|[a-zA-Z]_DONTBREAK_\.)([,;:!?])\s*(\S)/$1 $2 $3/g;
+   $s =~ s/([a-zA-Z%\/\[\]]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF]|\x05|[a-zA-Z]_DONTBREAK_\.)([,;:!?])\s*(\S)/$1 $2 $3/g;
    # asterisk
    $s =~ s/( [(\[]?)(\*)([a-z0-9])/$1$2\@ $3/gi;
    $s =~ s/([a-z0-9])(\*)([.,;:)\]]* )/$1 \@$2$3/gi;
@@ -1935,14 +1938,14 @@ sub tokenize {
    $s =~ s/ ([,;()\[\]])([a-zA-Z0-9.,;])/ $1 $2/g;
    $s =~ s/(\)+)([-\/])([a-zA-Z0-9])/$1 $2 $3/g;
    $s =~ s/([0-9\*\[\]()]|\xE2\x80\xB2)([.,;:] )/$1 $2/g;
-   $s =~ s/([a-zA-Z%]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\x05)([,;:.!?])([")]|''|\xE2\x80[\x99\x9D]|)(\s)/$1 $2 $3$4/g;
-   $s =~ s/([a-zA-Z%]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\x05)([,;:.!?])([")]|''|\xE2\x80[\x99\x9D]|)\s*$/$1 $2 $3/g;
-   $s =~ s/([.,;:]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\x05)('|\xE2\x80[\x99\x9D])/$1 $2/g;
+   $s =~ s/([a-zA-Z%]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF]|\x05)([,;:.!?])([")]|''|\xE2\x80[\x99\x9D]|)(\s)/$1 $2 $3$4/g;
+   $s =~ s/([a-zA-Z%]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF]|\x05)([,;:.!?])([")]|''|\xE2\x80[\x99\x9D]|)\s*$/$1 $2 $3/g;
+   $s =~ s/([.,;:]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF]|\x05)('|\xE2\x80[\x99\x9D])/$1 $2/g;
    $s =~ s/('|\xE2\x80[\x99\x9D])([.,;:]|\x04)/$1 $2/g;
    $s =~ s/([(){}\[\]]|\xC2\xB1)/ $1 /g;
-   $s =~ s/([a-zA-Z0-9]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\x05)\.\s*$/$1 ./g;
-   $s =~ s/([a-zA-Z]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\x05)\.\s+/$1 . /g;
-   $s =~ s/([a-zA-Z]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\x05)\.(\x04)/$1 . $2/g;
+   $s =~ s/([a-zA-Z0-9]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF]|\x05)\.\s*$/$1 ./g;
+   $s =~ s/([a-zA-Z]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF]|\x05)\.\s+/$1 . /g;
+   $s =~ s/([a-zA-Z]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF]|\x05)\.(\x04)/$1 . $2/g;
    $s =~ s/([0-9]),\s+(\S)/$1 , $2/g;
    $s =~ s/([a-zA-Z])(\$)/$1 $2/g;
    $s =~ s/(\$|[~<=>]|\xC2\xB1|\xE2\x89[\xA4\xA5]|\xE2\xA9[\xBD\xBE])(\d)/$1 $2/g;
@@ -1979,7 +1982,7 @@ sub tokenize {
    $s =~ s/(_DONTBREAK_\.)(\.{1,})/$1 $2/g;
    print "Point Q: $s\n" if $local_verbose;
    foreach $_ ((1 .. 2)) {
-      $s =~ s/(\s(?:[-a-z0-9()']|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])*)(\.{2,})((?:[-a-z0-9()?!:\/']|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])*\s|(?:[-a-z0-9()'\/]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF])+\.\s)/$1 $2 $3/gi;
+      $s =~ s/(\s(?:[-a-z0-9()']|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])*)(\.{2,})((?:[-a-z0-9()?!:\/']|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])*\s|(?:[-a-z0-9()'\/]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])+\.\s)/$1 $2 $3/gi;
    }
    $s =~ s/0s\b/0 s/g;
    $s =~ s/([0-9])(\x04)/$1 $2/g;
