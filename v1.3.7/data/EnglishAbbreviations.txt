@@ -1,0 +1,388 @@
+Jan.    :: January
+Feb.    :: February
+Febr.   :: February
+Mar.    :: March
+Apr.    :: April
+Jun.    :: June
+Jul.    :: July
+Aug.    :: August
+Sep.    :: September
+Sept.   :: September
+Oct.    :: October
+Nov.    :: November
+Dec.    :: December
+
+Amb.    :: Ambassador
+Br.     :: Brother
+Dr.     :: Doctor
+Eng.    :: Engineer
+Fr.     :: Father
+Gov.    :: Governor
+Hon.    :: Honorable
+Ing.    :: Ingenieur :: Ingeniero
+Ir.     :: Ingenieur
+Jr.     :: Junior
+Messrs. :: Messieurs
+Mr.     :: Mister
+Mrs.    :: Misses
+Ms.
+Pres.   :: President
+Prof.   :: Professor
+Rep.    :: Representative
+Rev.    :: Reverend
+Sen.    :: Senator
+Sr.     :: Senior
+St.     :: Saint
+Spt.    :: Superintendent
+Sup.    :: Superintendent
+Supt.   :: Superintendent
+
+Adm.      :: Admiral
+Brig.     :: Brigadier
+Brig.Gen. :: Brigadier General
+Brig.-Gen.:: Brigadier General
+Capt.     :: Captain
+Cpt.      :: Captain
+Col.      :: Colonel
+Gen.      :: General
+Lt.       :: Lieutenant
+Lt.Gen.   :: Lieutenant General
+Lt.-Gen.  :: Lieutenant General
+Maj.      :: Major
+Maj.Gen.  :: Major General
+Maj.-Gen. :: Major General
+Sgt.      :: Sergeant
+
+Ret.      :: Retired
+
+Co.       :: Company
+Corp.     :: Corporation
+Inc.      :: Incorporated
+LLC       :: Limited Liability Company
+Ltd.      :: Limited
+N.V.      :: Naamloze vennootschap
+S.p.A.    :: Società per Azioni
+
+A.D.    :: anno Domini
+a.m.    :: ante meridiem
+al.     :: alii
+B.C.    :: before Christ
+B.S.    :: bullshit
+etc.    :: et cetera :: and other things
+cf.     :: confer :: compare
+ed.     :: editor
+e.g.    :: exempli gratia :: for example
+et al.  :: et alii :: et aliae :: and others
+i.e.    :: id est :: that is
+Mt.     :: Mount
+p.m.    :: post meridiem
+p.s.    :: post scriptum
+S.E.    :: standard error
+U.K.    :: United Kingdom
+U.N.    :: United Nations
+vs.     :: versus
+yrs.    :: years
+
+B.P.    :: blood pressure
+s.c.    :: subcutaneous
+s.d.    :: stable disease
+
+art.    :: article
+arts.   :: articles
+chap.   :: chapter
+chaps.  :: chapters
+fig.    :: figure
+Fig.    :: figure
+op.     :: opus
+p.      :: page
+para.   :: paragraph
+paras.  :: paragraphs
+pp.     :: pages
+# No.     :: number
+Nos.    :: numbers
+sect.   :: section
+sects.  :: sections
+vol.    :: volume
+vols.   :: volumes
+
+Ala.    :: Alabama
+Ariz.   :: Arizona
+Ark.    :: Arkansas
+Calif.  :: California
+Colo.   :: Colorado
+Conn.   :: Connecticut
+D.C.    :: District of Columbia
+Del.    :: Delaware
+Fla.    :: Florida
+Ga.     :: Georgia
+Ill.    :: Illinois
+Ind.    :: Indiana
+Kans.   :: Kansas
+Ky.     :: Kentucky
+La.     :: Louisiana
+Mass.   :: Massachusetts
+Md.     :: Maryland
+Mich.   :: Michigan
+Minn.   :: Minnesota
+Miss.   :: Mississippi
+Mo.     :: Missouri
+Mont.   :: Montana
+Nebr.   :: Nebraska
+Nev.    :: Nevada
+N.C.    :: North Carolina
+N.D.    :: North Dakota
+N.H.    :: New Hampshire
+N.J.    :: New Jersey
+N.M.    :: New Mexico
+N.Y.    :: New York
+Okla.   :: Oklahoma
+Ore.    :: Oregon
+Pa.     :: Pennsylvania
+P.R.    :: Puerto Rico
+R.I.    :: Rhode Island
+S.C.    :: South Carolina
+S.D.    :: South Dakota
+Tenn.   :: Tennessee
+Tex.    :: Texas
+U.S.    :: United States
+U.S.A.  :: United States of America
+Va.     :: Virginia
+V.I.    :: Virgin Islands
+Vt.     :: Vermont
+Wash.   :: Washington
+W.Va.   :: West Virginia
+Wis.    :: Wisconsin
+Wyo.    :: Wyoming
+
+CA      :: California
+GA      :: Georgia
+NY      :: New York
+TX      :: Texas
+
+ISI     :: Information Sciences Institute
+MIT     :: Massachusetts Institute of Technology
+UCLA    :: University of California, Los Angeles
+USC     :: University of Southern California
+USPS    :: United States Postal Service
+
+AF      :: Afghanistan
+AL      :: Albania
+AT      :: Austria
+AU      :: Australia
+BA      :: Bosnia and Herzegovina
+BD      :: Bangladesh
+BE      :: Belgium
+BG      :: Bulgaria
+BR      :: Brazil
+CA      :: Canada
+CG      :: Republic of Congo
+CH      :: Switzerland
+CN      :: China
+CR      :: Costa Rica
+CU      :: Cuba
+CV      :: Cape Verde
+DE      :: Germany
+DK      :: Denmark
+DZ      :: Algeria
+EE      :: Estonia
+EG      :: Egypt
+ES      :: Spain
+FR      :: France
+GB      :: Great Britain
+GB      :: United Kingdom
+GE      :: Georgia
+GH      :: Ghana
+HK      :: Hong Kong
+HN      :: Honduras
+HR      :: Croatia
+ID      :: Indonesia
+IN      :: India
+IQ      :: Iraq
+IR      :: Iran
+IR      :: Islamic Republic of Iran
+IL      :: Israel
+IT      :: Italy
+JO      :: Jordan
+JP      :: Japan
+KE      :: Kenya
+KG      :: Kyrgyzstan
+KH      :: Cambodia
+KP      :: Democratic People's Republic of Korea
+KP      :: North Korea
+KR      :: Republic of Korea
+KR      :: South Korea
+KZ      :: Kazakhstan
+LA      :: Laos
+LA      :: Lao People's Democratic Republic
+LY      :: Libya
+LY      :: Libyan Arab Jamahiriya
+MA      :: Morocco
+MC      :: Monaco
+MK      :: Macedonia
+MK      :: Former Yugoslav Republic of Macedonia
+MM      :: Myanmar
+MR      :: Mauritania
+MX      :: Mexico
+MY      :: Malaysia
+NI      :: Nicaragua
+NL      :: Netherlands
+PA      :: Panama
+PE      :: Peru
+PH      :: Philippines
+PK      :: Pakistan
+PS      :: Palestine
+PS      :: Palestinian Territory
+RO      :: Romania
+RU      :: Russia
+RU      :: Russian Federation
+QA      :: Qatar
+SA      :: Saudi Arabia
+SE      :: Sweden
+SG      :: Singapore
+SK      :: Slovakia
+SY      :: Syria
+SY      :: Syrian Arab Republic
+TH      :: Thailand
+TJ      :: Tajikistan
+TM      :: Turkmenistan
+TN      :: Tunisia
+TW      :: Taiwan
+TZ      :: Tanzania
+UA      :: Ukraine
+UAE     :: United Arab Emirates
+UK      :: Britain
+UK      :: Great Britain
+UK      :: United Kingdom
+US      :: United States
+US      :: United States of America
+USA     :: United States
+USA     :: United States of America
+UZ      :: Uzbekistan
+VN      :: Vietnam
+VN      :: Viet Nam
+YE      :: Yemen
+ZA      :: South Africa
+ZW      :: Zimbabwe
+
+A&E     :: accident and emergency department
+AAM     :: air-to-air missile
+ABC     :: American Broadcasting Corporation
+ABC     :: Australian Broadcasting Corporation
+AC      :: air conditioning
+AC      :: alternating current
+ADL     :: Anti-Defamation League
+ASEAN   :: Association of Southeast Asian Nations
+ATM     :: automated teller machine
+BNP     :: British National Party
+CEO     :: chief executive officer
+CCTV    :: closed-circuit television
+CCTV    :: China Central Television
+CEO     :: chief executive officer
+CFE     :: Conventional Forces in Europe
+CFO     :: chief financial officer
+CPU     :: central processing unit
+CS      :: computer science
+DC      :: District of Columbia
+DD      :: dear daughter
+DDoS    :: distributed denial of service
+DH      :: dear husband
+DNA     :: deoxyribonucleic acid
+DS      :: dear son
+DW      :: dear wife
+EMT     :: epithelial-mesenchymal transition
+ESA     :: European Space Agency
+EU      :: European Union
+GCC     :: Golf Cooperation Council
+GOP     :: Republic Party # US: Grand Old Party
+IAEA    :: International Atomic Energy Agency
+ICBM    :: intercontinental ballistic missile
+IED     :: improvised explosive device
+IP      :: intellectual property
+IP      :: internet protocol
+ISS     :: International Space Station
+IT      :: internet protocol
+IT      :: intellectual property
+JI      :: Jemaah Islamiyah
+LA      :: Los Angeles
+MM      :: multiple myeloma
+MP      :: member of parliament # UK
+MP      :: military police
+NAFTA   :: North American Free Trade Agreement
+NCRI    :: National Council of Resistance of Iran
+NATO    :: North Atlantic Treaty Organization
+NGO     :: non-governmental organization
+NPT     :: Non-Proliferation Treaty
+NYT     :: New York Times
+OP      :: original poster
+OSCE    :: Organization for Security and Cooperation in Europe
+OWS     :: Occupy Wall Street
+PC      :: personal computer
+PC      :: politically correct
+PKK     :: Kurdistan Workers' Party
+POW     :: prisoner of war
+RMB     :: renminbi
+RNA     :: ribonucleic acid
+RPG     :: rocket-propelled grenade
+TNT     :: trinitrotoluene
+UAE     :: United Arab Emirates
+UK      :: United Kingdom
+UN      :: United Nations
+UNDCP   :: United Nations Drug Control Program
+UNODC   :: United Nations Office for Drugs and Crime
+US      :: United States
+USA     :: United States of America
+WHO     :: World Health Organization
+WMD     :: weapons of mass destruction
+WSJ     :: Wall Street Journal
+WT      :: wild-type
+WTO     :: World Trade Organization
+WWI     :: World War I
+WWII    :: World War II
+
+cm      :: centimeter
+g       :: gram
+h       :: hour
+hrs     :: hour
+kg      :: kilogram
+km      :: kilometer
+M       :: molar
+mg      :: milligram
+min     :: minute
+ml      :: milliliter
+mm      :: millimeter
+mph     :: miles per hour
+µm      :: micrometer
+µM      :: micromolar
+ng      :: nanogram
+nM      :: nanomolar
+
+ad      :: advertisement
+asap    :: as soon as possible
+bd      :: bluray disc
+bro     :: brother
+cd      :: compact disc
+dna     :: deoxyribonucleic acid
+dvd     :: digital versatile disc
+exec    :: executive
+execs   :: executives
+flu     :: influenza
+lib     :: liberal
+lol     :: laughing out loud
+mag     :: magazine
+math    :: mathematics
+maths   :: mathematics
+pic     :: picture
+pvc     :: polyvinyl chloride
+rna     :: ribonucleic acid
+Ser     :: serine
+sis     :: sister
+tg      :: transgenic
+Tg      :: transgenic
+TV      :: television
+USMC    :: United States Marine Corps
+wt      :: wild-type
+
+d.      :: day
+g.      :: gram
+m.      :: meter
+

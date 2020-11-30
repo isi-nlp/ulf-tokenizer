@@ -1,5 +1,5 @@
-tok-eng version 1.3.6
-Release date: November 28, 2019
+tok-eng version 1.3.7
+Release date: November 30, 2020
 Author: Ulf Hermjakob, USC Information Sciences Institute
 
 English tokenizer tokenize-english.pl
@@ -43,6 +43,9 @@ one, but the tokenizer leaves 'spectrin-F-actin' unsplit.)
 
 -----------------------------------------------------------------
 
+Changes in version 1.3.7:
+- Better handling of Cyrillic text, especially hyphenated tokens.
+- Better handling of some em/en-dashes, replacement character at beginning or end of token.
 Changes in version 1.3.5:
 - Better treatment of extended Latin (e.g. Lithuanian), Cyrillic scripts
 - minor improvements re: km2 &x160; No./No.2
