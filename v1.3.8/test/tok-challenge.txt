@@ -1,0 +1,17 @@
+::raw ZO-1, ZO-2, and ZO-3, which contain three PDZ domains (PDZ1 to -3), are concentrated at tight junctions (TJs) in epithelial cells.
+::raw TJ strands are mainly composed of two distinct types of four-transmembrane proteins, occludin, and claudins, between which occludin was reported to directly bind to ZO-1/ZO-2/ZO-3.
+::raw <sup> * </sup> , <em> p </em> &lt; 0.05, <em> n </em> = 3 by <em> t </em> test.
+::raw <sup> * </sup> , <em> p </em> &lt; 0.05 to control IgG, <em> n </em> = 3 by <em> t </em> test.
+::raw <sup> * </sup> , <em> p </em> &lt; 0.05 to DMSO, <em> n </em> = 3 by <em> t </em> test.
+::raw Interestingly, most of the claudin family members end in YV at their COOH termini, which are good candidates for the binding partners for PDZ domains (see <xref ref-type="fig" rid="F5">Fig. 5</xref> B).
+::raw As shown in <xref ref-type="fig" rid="F1">Fig. 1</xref>, not only ZO-1 but also ZO-2 and ZO-3 were targeted to and concentrated at TJs of these well-polarized occludin-deficient epithelial cells.
+::raw We incubated 10 μM purified His <sub> 6 </sub> RbC <sup> 771–928 </sup> with 10 μM of each purified E2F <sup> CM </sup> -DP <sup> CM </sup> heterodimer, precipitated it using Ni <sup> 2+ </sup> -NTA resin, eluted it with imidazole, and analyzed His <sub> 6 </sub> RbC <sup> 771–928 </sup> bound proteins with SDS-PAGE and Coomassie staining.
+::raw <a> Figure 1 </a> B shows that RbC <sup> 771–928 </sup> bound all four E2F <sup> CM </sup> -DP <sup> CM </sup> heterodimers but did not bind the E2F1 transactivation domain used as a negative control.
+::raw Mutants displaying only minor perturbations (|ΔΔG| &lt; 1 kcal mol<sup>−1</sup>) are colored light gray, and mutants displaying increased K<sub>d</sub> values are colored pink if the perturbations are moderate (|ΔΔG| = 1–1.5 kcal mol<sup>−1</sup>) or red if the perturbations are dramatic (|ΔΔG| &gt; 1.5 kcal mol<sup>−1</sup>).
+::raw Y4 and Y27 are located adjacent to the aromatic sandwich, with the Y4A mutation causing a moderate perturbation (|ΔΔG| = 1.2 kcal mol<sup>−1</sup>) and the Y27A mutation resulting in misfolded protein.
+::raw RbC is also required for high-affinity binding to E2F-DP complexes and for maximal repression of E2F-responsive promoters ( <a> Hiebert, 1993 </a> , <a> Hiebert et al., 1992 </a> and <a> Qin et al., 1992 </a> ).
+::raw The importance of the RbC domain is recapitulated in the Rb paralogs p107 and p130, which have conserved sequences C-terminal to their pocket domains that are required for growth suppression, high-affinity binding to their preferred E2F-DP complexes, and maximal repression of E2F-responsive promoters ( <a> Zhu et al., 1995 </a> ).
+::raw In addition, Drk, the <em> Drosophila </em> homologue of mammalian Grb2 and Mona/Gads, binds two sequence motifs in the ‘Daughter of Sevenless’ (Dos) protein which strongly resemble the SLP-76 binding site of Grb2 and Mona/Gads (P–x <sub> 3 </sub> –R–x <sub> 2 </sub> –K–P) ( <xref ref-type="bibr"> Feller et al., 2002 </xref> ).
+::raw Several mammalian signalling proteins also contain sequences with the P–x <sub> 3 </sub> –R–x <sub> 2 </sub> –K–P motif ( <xref ref-type="bibr"> Berry et al., 2002 </xref> ; <xref ref-type="bibr"> Feller et al., 2002 </xref> ).
+::raw atvejį, bažnyčią.
+::raw 10km²;&#160;
