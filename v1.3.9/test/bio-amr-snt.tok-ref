@@ -3636,7 +3636,7 @@ In the present study , we discovered that Snail is expressed briefly at an early
 Thereafter , Snail disappears and remains absent during subsequent follicle down @-@ growth and maturation .
 This exquisite pattern appears to be functionally relevant since altering it in vivo correspondingly affects features associated with hair bud formation , including down-regulation of E-cadherin , increased proliferation , and repressed terminal differentiation .
 Although the temporal spike of Snail in the hair bud is reflected at the mRNA level and seems to follow Wnt signaling and BMP inhibition , LEF-1 @/@ β-catenin activation does not appear to induce <i> Snail </i> gene expression in embryonic skin keratinocytes .
-In contrast , we provide in vitro , transgenic ( Tg ) , and gene targeting evidence to show that TGF-β2 and small phenotype– and mothers against decapentaplegic @–@ related protein 2 ( SMAD2 ) signaling are upstream inducers of <i> Snail </i> gene expression in skin epithelium .
+In contrast , we provide in vitro , transgenic ( Tg ) , and gene targeting evidence to show that TGF-β2 and small phenotype @– and mothers against decapentaplegic @–@ related protein 2 ( SMAD2 ) signaling are upstream inducers of <i> Snail </i> gene expression in skin epithelium .
 In the absence of TGF-β2 signaling and <i> Snail </i> gene expression , hair placodes can form , but further follicle down @-@ growth is blocked .
 Our studies point to the view that Snail likely functions downstream of cell fate specification , at a stage where the bud begins to exhibit enhanced proliferation and migration .
 Results
@@ -6449,7 +6449,7 @@ However , K-Ras , but not N-Ras or H-Ras , confers stem @-@ like properties on c
 K-Ras-4B , the most highly expressed splice variant of K-Ras , binds calmodulin ; H-Ras and N @- Ras do not ( <ce:cross-ref id="crosref0085" refid="bib74"> Villalonga et al. , 2001 </ce:cross-ref> ) .
 We believe that this unique property of K-Ras-4B confers stem @-@ like properties to cells expressing oncogenic K-Ras-4B proteins ( M. Wang and F.M. , unpublished data ) .
 Analysis of human syndromes caused by germline mutations in H-Ras or K-Ras supports the idea that K-Ras is a stronger oncogene .
-Unexpectedly , humans can tolerate germline @-@ activating mutations in H-Ras—the same activating mutations that drive somatic mutations .
+Unexpectedly , humans can tolerate germline @-@ activating mutations in H-Ras @—@ the same activating mutations that drive somatic mutations .
 Costello syndrome , which is characterized by germline H-Ras mutations , is associated with a broad spectrum of developmental abnormalities and a high risk for rhabdomyosarcomas and neuroblastomas ( reviewed in <ce:cross-ref id="crosref0090" refid="bib55"> Rauen , 2013 </ce:cross-ref> ) .
 It is puzzling that these individuals do not succumb to malignancies associated with sporadic H-Ras mutations ( <ce:cross-ref id="crosref0095" refid="tbl1"> Table 1 </ce:cross-ref> ) .
 Although fully activating alleles of H-Ras can be tolerated , fully activated alleles of K-Ras may not .
@@ -6572,7 +6572,7 @@ Whether the same conclusion can be applied to other mutations such as G12D or G1
 The approach of restoring GTP hydrolysis to mutant proteins received a brief infusion of hope when Scheffzek and colleagues showed that G12V H-Ras could indeed hydrolyze a GTP analog diaminobenzophenone @-@ phosphoroamidate @-@ GTP in which the aromatic amino group mimics the catalytic effects of GAP ’s arginine finger ( <ce:cross-ref id="crosref0280" refid="bib2"> Ahmadian et al. , 1999 </ce:cross-ref> ) .
 A small molecule that provided this local charge might therefore trick mutant Ras into GTP hydrolysis .
 At first sight , the GTD- @/@ GTP @-@ binding site of Ras does not offer any room for such a molecule to bind .
-However , these issues deserve rethinking—perhaps G12D offers more possibilities for this kind of attack than G12V , for example .
+However , these issues deserve rethinking @—@ perhaps G12D offers more possibilities for this kind of attack than G12V , for example .
 Targeting Ras Posttranslational Modification Pathways
 Ras proteins are processed in several steps ( reviewed in <ce:cross-ref id="crosref0285" refid="bib24"> Gysin et al. , 2011 </ce:cross-ref> ) , including farnesylation , proteolytic cleavage at the C terminus by RCE1 , and carboxymethylation by isoprenylcysteine carboxyl methyltransferase ( ICMT ) .
 K-Ras-4A , H-Ras , and N-Ras are further processed by palmitoylation ( <ce:cross-ref id="crosref0290" refid="fig3"> Figure 3 </ce:cross-ref> ) .
@@ -6893,12 +6893,12 @@ Analyses of the relative levels of phosphorylated Akt and ERK1 @/@ ERK2 demonstr
 We noted however , that sorafenib inhibited Akt and ERK1 @/@ ERK2 slightly more effectively than SPP86 under these conditions ( Figure <xref ref-type="fig" rid="Fig4"> 4 </xref>@ E ) .
 These differential effects on PI3K @/@ Akt and MAPK signaling may result may stem from the fact that sorafenib and SPP86 target different kinases at low concentrations .
 The enhanced inhibition of MAPK signaling observed with sorafenib may also result from the fact that it targets both RET and RAF family kinases [ @<xref ref-type="bibr" rid="CR37"> 37 </xref> , <xref ref-type="bibr" rid="CR45"> 45 </xref>@ ] .
-Since these observations suggested that SPP86 disrupts ERα- RET crosstalk , we investigated the effect of SPP86 on the proliferation of MCF7 cells .
-Estrogen deprived and serum starved cells were cultured in the presence of 1 ng @/@ ml β- estradiol ( E2 ) or 10 ng @/@ ml GDNF alone and in combination in the presence of 1 μM SPP86 for 7 days .
+Since these observations suggested that SPP86 disrupts ERα @- RET crosstalk , we investigated the effect of SPP86 on the proliferation of MCF7 cells .
+Estrogen deprived and serum starved cells were cultured in the presence of 1 ng @/@ ml β @- estradiol ( E2 ) or 10 ng @/@ ml GDNF alone and in combination in the presence of 1 μM SPP86 for 7 days .
 SPP86 effectively inhibited E2 and @/@ or GDNF @- induced proliferation ( <i> p </i> < 0.05 ) ( Figure <xref ref-type="fig" rid="Fig5"> 5 </xref>@ A ) .
 In contrast , SPP86 did not inhibit proliferation when MCF7 cells were co-exposed to 1 ng @/@ ml E2 and 5 ng @/@ insulin under similar conditions ( Figure <xref ref-type="fig" rid="Fig5"> 5 </xref>@ B ) .
 We next compared the effect of SPP86 and tamoxifen on the proliferation of MCF7 cells .
-Estrogen deprived and serum starved cells were cultured in the presence of 1 ng @/@ ml β- estradiol ( E2 ) and 10 ng @/@ ml GDNF with increasing doses of either SPP86 or tamoxifen , in medium containing 1 ng @/@ ml β- estradiol ( E2 ) and 10 ng @/@ ml GDNF and incubated for 7 days .
+Estrogen deprived and serum starved cells were cultured in the presence of 1 ng @/@ ml β @- estradiol ( E2 ) and 10 ng @/@ ml GDNF with increasing doses of either SPP86 or tamoxifen , in medium containing 1 ng @/@ ml β @- estradiol ( E2 ) and 10 ng @/@ ml GDNF and incubated for 7 days .
 In these experiments , SPP86 and tamoxifen inhibited proliferation to a similar degree with IC @<sub> 50 </sub> values of 1.0 and 1.4 μM respectively ( Figure <xref ref-type="fig" rid="Fig5"> 5 </xref>@ C ) .
 Constitutive activation of the ERK pathway in melanoma and skin melanocytes in Grey horses ( PMID : 25413220 )
 <sec-title level="1" sec-area="abstract"> Results </sec-title>

@@ -9,7 +9,7 @@ package NLP::English;
 use File::Basename;
 use File::Spec;
 
-# tok v1.3.7 (November 30, 2020)
+# tok v1.3.9 (December 5, 2020)
 
 $chinesePM = NLP::Chinese;
 $ParseEntry = NLP::ParseEntry;
@@ -1769,6 +1769,9 @@ sub guard_abbreviations_with_dontbreak {
 
 $alpha = "(?:[a-z]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|[\xD0-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])";
 $alphanum = "(?:[a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|[\xD0-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])(?:[-_a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])*(?:[a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])|(?:[a-z0-9]|\xCE[\xB1-\xBF]|\xC3[\x80-\x96\x98-\xB6\xB8-\xBF]|[\xC4-\xC9\xCE-\xD3][\x80-\xBF]|\xE0[\xA4-\xA5][\x80-\xBF]|\xE0[\xB6-\xB7][\x80-\xBF])";
+$cyrillic = "(?:[\xD0-\xD3][\x80-\xBF])";
+$uc_cyrillic = "(?:\xD0[\x80-\xAF]|\xD1[\xA0\xA2\xA4\xA6\xA8\xAA\xAC\xAE\xB0\xB2\xB4\xB6\xB8\xBA\xBC\xBE]|\xD2[\x80\x8A\x8C\x8E\x90\x92\x94\x96\x98\x9A\x9C\x9E\xA0\xA2\xA4\xA6\xA8\xAA\xAC\xAE\xB0\xB2\xB4\xB6\xB8\xBA\xBC\xBE]|\xD3[\x80\x81\x83\x85\x87\x89\x8B\x8D\x90\x92\x94\x96\x98\x9A\x9C\x9E\xA0\xA2\xA4\xA6\xA8\xAA\xAC\xAE\xB0\xB2\xB4\xB6\xB8])";
+$lc_cyrillic = "(?:\xD0[\xB0-\xBF]|\xD1[\x80-\x9F\xA1\xA3\xA5\xA7\xA9\xAB\xAD\xAF\xB1\xB2\xB5\xB7\xB9\xBB\xBD\xBF]|\xD2[\x81\x8B\x8D\x8F\x91\x93\x95\x97\x99\x9B\x9D\x9F\xA1\xA3\xA5\xA7\xA9\xAB\xAD\xAF\xB1\xB3\xB5\xB7\xB9\xBB\xBD\xBF]|\xD3[\x82\x84\x86\x88\x8A\x8C\x8E\x91\x93\x95\x97\x99\x9B\x9D\x9F\xA1\xA3\xA5\xA7\xA9\xAB\xAD\xAF\xB1\xB3\xB5\xB7\xB9])";
 
 sub normalize_punctuation {
    local($caller, $s) = @_;
@@ -1908,9 +1911,26 @@ sub tokenize {
          $s =~ s/([\xD8-\xDB][\x80-\xBF])([,;:!?.\(\)\[\]\/]|\xD8\x8C|\xD8\x9B|\xD8\x9F|\xD9\xAA|\xC2\xAB|\xC2\xBB|\xE2[\x80-\x9F][\x80-\xBF])/$1 $2/gi; # punctuation includes Arabic ,;?%
          $s =~ s/([,;:!?.\(\)\[\]\/]|\xD8\x8C|\xD8\x9B|\xD8\x9F|\xD9\xAA|\xC2\xAB|\xC2\xBB|\xE2[\x80-\x9F][\x80-\xBF])([\xD8-\xDB][\x80-\xBF])/$1 $2/gi;
       }
+      $s =~ s/(\d|[a-zA-Z]|[\xD0-\xD3\xD8-\xDB][\x80-\xBF])([-]|\xE2\x80[\x93\x94])([\xD0-\xD3\xD8-\xDB][\x80-\xBF])/$1 \@$2\@ $3/g;
+      $s =~ s/(\d|[a-zA-Z])([\xD8-\xDB][\x80-\xBF])/$1 \@\@ $2/g;
+      $s =~ s/ ($uc_cyrillic\.)($uc_cyrillic\.)($uc_cyrillic\.)($uc_cyrillic$cyrillic{2})/ $1 $2 $3 $4/g; # added Dec. 1, 2020
+      $s =~ s/ ($uc_cyrillic\.)($uc_cyrillic\.)($uc_cyrillic$cyrillic{2})/ $1 $2 $3/g; # added Dec. 1, 2020
+      $s =~ s/ ($uc_cyrillic\.)($uc_cyrillic$cyrillic{2})/ $1 $2/g; # added Dec. 1, 2020
+      $s =~ s/ ((?:[1-9]\d*|I|II|III|IV|V|VI|VII|VIII|IX|X)\.)($uc_cyrillic$cyrillic)/ $1 $2/g; # added Dec. 1, 2020
+      $s =~ s/([,;:()'*%|]|\xE2\x80\x99)($cyrillic)/$1 $2/g; # added Dec. 5, 2020 RIGHT SINGLE QUOTATION MARK (U+2019)
+      $s =~ s/([,;:()'*%|])([-]|\xE2\x80[\x93\x94])($cyrillic)/$1 \@$2\@ $3/g; # added Dec. 5, 2020
+      $s =~ s/([ 0-9.,;:?!()'*|][.+\\]+)($cyrillic)/$1 $2/g; # added Dec. 5, 2020
+      $s =~ s/([ 0-9.,;:?!()'*|][.+\\%]+)([-]|\xE2\x80[\x93\x94])($cyrillic)/$1 \@$2\@ $3/g; # added Dec. 5, 2020
+      $s =~ s/($cyrillic)([,;:()%'*|\\])/$1 $2/g; # added Dec. 5, 2020
+      $s =~ s/($cyrillic)(\.)([-,\/\\])/$1$2 $3/g; # added Dec. 5, 2020
+      $s =~ s/( _+)($cyrillic)/$1 $2/g; # added Dec. 5, 2020
+      $s =~ s/($cyrillic)(_+ )/$1 $2/g; # added Dec. 5, 2020
+      $s =~ s/($cyrillic$lc_cyrillic)(\.)($uc_cyrillic$lc_cyrillic)/$1 $2 $3/g; # added Dec. 5, 2020
    }
-   $s =~ s/(\d|[a-zA-Z]|[\xD0-\xD3\xD8-\xDB][\x80-\xBF])([-]|\xE2\x80[\x93\x94])([\xD0-\xD3\xD8-\xDB][\x80-\xBF])/$1 \@$2\@ $3/g;
-   $s =~ s/(\d|[a-zA-Z])([\xD8-\xDB][\x80-\xBF])/$1 \@\@ $2/g;
+   $s =~ s/($alpha)(\xC2\xB7|\xE2\x80\xA2)/$1 $2/g; # Middle dot (U+00B7); Bullet (U+2022) added Dec. 5, 2020
+   $s =~ s/(\xC2\xB7|\xE2\x80\xA2)($alpha)/$1 $2/g; # added Dec. 5, 2020
+   $s =~ s/(\xE2\x84\x96)/ $1 /g; # Numero sign (U+2116) added Dec. 5, 2020
+   $s =~ s/(\xE2\x80\xB0)/ $1 /g; # Per Mille sign (U+2030) added Dec. 5, 2020
    $s =~ s/($alpha)(-|\xE2\x80[\x93\x94]|\xEF\xBF\xBD\.*) /$1 \@$2 /g; # added Nov. 30, 2020 # \xEF\xBF\xBD: repl.char.
    $s =~ s/ (-|\xE2\x80[\x93\x94]|\xE2\x99\xA6|\xEF\xBF\xBD)($alpha)/ $1\@ $2/g; # added Nov. 30, 2020
    print "Point K: $s\n" if $local_verbose;
