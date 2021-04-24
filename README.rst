@@ -2,7 +2,7 @@
 Ulf's Tokenizer
 ***************
 
-Tokenizer tool developed by Ulf Harmjakob @ USC ISI (so we call it ulf's tokenizer)
+Tokenizer tool developed by Ulf Hermjakob @ USC ISI (so we call it ulf's tokenizer)
 
 ===============
 Usage
