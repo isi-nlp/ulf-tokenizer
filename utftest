@@ -1,22 +1,15 @@
 #!/usr/bin/env python3
 
-import os, sys
+import os, sys, io
 
 count = 0
-for line in sys.stdin:
-    olinev = line.strip().split()
-    nlinev = []
-    for wd in olinev:
-        try:
-            uwd = bytearray(wd, 'utf8', errors='ignore').decode('utf8', errors='ignore')
-            nlinev.append(uwd)
-        except:
-            count += 1
-            pass
-    oline = ' '.join(olinev)
-    nline = ' '.join(nlinev)
-    if oline != nline:
-       sys.stderr.write('badline:: %s\n' % oline)
-    print(nline)
-if count > 0:
-    sys.stderr.write('Total bad words skipped: %d\n' % count)
+try:
+    stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8', errors='ignore')
+    stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='ignore')
+    for line in stdin:
+        count += 1
+        stdout.write(line.strip())
+        stdout.write('\n')
+except:
+    sys.stderr.write(f'Error while procrssing line: {count}')
+    raise
