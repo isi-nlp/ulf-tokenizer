@@ -178,7 +178,7 @@ while (<>) {
    # directional marks, join marks, variation selectors, Arabic tatweel
    if ($delete_chars_p) {
       my $result = "";
-      while (($pre,$char,$post) = ($s =~ /^(.*?)([\x00-\x08\x0B-\x1F\x7F]|\C2[\x80-\x9F]|\xD9\x80|\xE2\x80[\x8B-\x8F]|\xEF\xB8[\x80-\x8F]|\xEF\xBB\xBF|\xF3\xA0[\x84-\x87][\x80-\xBF])(.*)$/s)) {
+      while (($pre,$char,$post) = ($s =~ /^(.*?)([\x00-\x08\x0B-\x1F\x7F]|\xC2[\x80-\x9F]|\xD9\x80|\xE2\x80[\x8B-\x8F]|\xEF\xB8[\x80-\x8F]|\xEF\xBB\xBF|\xF3\xA0[\x84-\x87][\x80-\xBF])(.*)$/s)) {
 	 $result .= $pre;
 	 $s = $post;
 	 &register_change("DELETE1", "$char") if $report_changes_p;
