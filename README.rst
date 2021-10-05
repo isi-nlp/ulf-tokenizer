@@ -5,6 +5,13 @@ Ulf's Tokenizer
 Tokenizer tool developed by Ulf Hermjakob @ USC ISI (so we call it ulf's tokenizer)
 
 ===============
+Deprecated
+===============
+
+This tokenizer is superseded by https://github.com/uhermjakob/utoken written by the same author.
+The new tool is much more multi-lingual, modular and contains other tokenization improvements; in Python.
+
+===============
 Usage
 ===============
 
